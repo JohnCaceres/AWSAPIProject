@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3q9j&2(j%v3j)di0+vl5jts)#fh9-1x4)(_bxzea1ibi#zit9m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-54-198-5-150.compute-1.amazonaws.com', '127.0.0.1']
+ALLOWED_HOSTS = ['ec2-54-198-5-150.compute-1.amazonaws.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'AWSAPIProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'projectDB',
+        'USER': 'admin',
+        'PASSWORD': 'adminpassword',
+        'HOST': 'aws-project-database.ci2qf5x603fn.us-east-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
@@ -128,3 +132,14 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_PROFILE = 'default'
+AWS_ACCESS_KEY_ID="ASIAX5W5OVHZNN6MG6FL"
+AWS_SECRET_ACCESS_KEY='dSsEdXqsP5lvc3mPrTiLo7PKUdF6vNIFwF5YgrWV'
+AWS_STORAGE_BUCKET_NAME='uadyawslabprojectbucket'
+AWS_SESSION_TOKEN='FwoGZXIvYXdzENT//////////wEaDIW7uXZmEL6cZm4bMyLPAQw6z/fYdEuXICeKi3zGUAUpalLrbWwov0pZz0hpKpGkYwIhhopXJLLJr/4S1Man49vY/MEn6f5ApFNgTJUeD2qFAxNvVqVcEZq5/20V1ygjUpAOCziol9ZChLhbfl/8rqccjH7GuFDS3M/ed7wFFYEBTsLCQq5s3Vx6iJgd3uVvzdT/7hhKYilCSBNXrTWh0QcSFdiS+bUc1kAKAcOQSZTLk5sC4basHbmVmV4CeEmUHsiXQeIpF9sdT76wj84vwf7SYWkJP/NCmxDuSRYaQijnkL+UBjIt2GpPDvFxdAXZcIfw/cnT/eCyAoRv8+F2Tppf/8Jc5+7SuUgHMXynFy9YfQS6'
+AWS_DEFAULT_REGION='us-east-1'
+AWS_QUERYSTRING_AUTH = False
+AWS_DEFAULT_ACL ='public-read'
